@@ -28,20 +28,20 @@ Unlike simple averaging, LTTB ensures that important spikes and anomalies are pr
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vm-lttb-downsampler.git
-cd vm-lttb-downsampler
+git clone https://github.com/yourusername/downsampler.git
+cd downsampler
 
 # Build the binary
-go build -o vm-lttb-downsampler main.go
+go build -o downsampler main.go
 
 # Make it executable
-chmod +x vm-lttb-downsampler
+chmod +x downsampler
 ```
 
 ### Using Go Install
 
 ```bash
-go install github.com/yourusername/vm-lttb-downsampler@latest
+go install github.com/yourusername/downsampler@latest
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### Basic Usage
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2024-01-01T00:00:00Z" \
   -end "2024-01-31T00:00:00Z" \
@@ -79,7 +79,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### 1. Downsample Last Week to Hourly Resolution
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2024-01-01T00:00:00Z" \
   -end "2024-01-08T00:00:00Z" \
@@ -91,7 +91,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### 2. Create 5-Minute Summaries for Specific Metrics
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2024-01-01T00:00:00Z" \
   -end "2024-01-02T00:00:00Z" \
@@ -104,7 +104,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### 3. Downsample Windows Metrics with Pattern Matching
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2023-01-01T00:00:00Z" \
   -end "2024-01-01T00:00:00Z" \
@@ -117,7 +117,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### 4. Create Monthly Summaries and Delete Originals
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2023-01-01T00:00:00Z" \
   -end "2024-01-01T00:00:00Z" \
@@ -129,7 +129,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### 5. Dry Run to Preview Changes
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2024-01-01T00:00:00Z" \
   -end "2024-01-31T00:00:00Z" \
@@ -141,7 +141,7 @@ go install github.com/yourusername/vm-lttb-downsampler@latest
 ### 6. Process Metrics from Specific Job
 
 ```bash
-./vm-lttb-downsampler \
+./downsampler \
   -vm-url "http://localhost:8428" \
   -start "2024-01-01T00:00:00Z" \
   -end "2024-01-31T00:00:00Z" \
@@ -156,21 +156,21 @@ For optimal storage and query performance, consider implementing multiple downsa
 
 ```bash
 # Recent data: 5-minute summaries
-./vm-lttb-downsampler \
+./downsampler \
   -start "$(date -d '7 days ago' --iso-8601=seconds)" \
   -end "$(date --iso-8601=seconds)" \
   -frame "5m" \
   -metric-prefix "5min_"
 
 # Last month: Hourly summaries  
-./vm-lttb-downsampler \
+./downsampler \
   -start "$(date -d '30 days ago' --iso-8601=seconds)" \
   -end "$(date -d '7 days ago' --iso-8601=seconds)" \
   -frame "hour" \
   -metric-prefix "hourly_"
 
 # Older data: Daily summaries
-./vm-lttb-downsampler \
+./downsampler \
   -start "$(date -d '1 year ago' --iso-8601=seconds)" \
   -end "$(date -d '30 days ago' --iso-8601=seconds)" \
   -frame "day" \
@@ -296,7 +296,7 @@ Create a cron job for regular downsampling:
 ```bash
 # /etc/cron.d/vm-downsampler
 # Daily downsampling at 2 AM
-0 2 * * * user /usr/local/bin/vm-lttb-downsampler -vm-url "http://localhost:8428" -start "$(date -d '24 hours ago' --iso-8601=seconds)" -end "$(date --iso-8601=seconds)" -frame "hour" -metric-prefix "hourly_" >> /var/log/vm-downsampler.log 2>&1
+0 2 * * * user /usr/local/bin/downsampler -vm-url "http://localhost:8428" -start "$(date -d '24 hours ago' --iso-8601=seconds)" -end "$(date --iso-8601=seconds)" -frame "hour" -metric-prefix "hourly_" >> /var/log/vm-downsampler.log 2>&1
 ```
 
 ## Troubleshooting
