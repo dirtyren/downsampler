@@ -232,6 +232,10 @@ Original metrics were preserved
 ================================
 ```
 
+## Compraison non downsampled vs downsampled
+<img width="1787" height="691" alt="Example" src="https://github.com/user-attachments/assets/06dc72ee-7f82-4d88-8d67-cec337428cfa" />
+
+
 ## Performance Tips
 
 1. **Batch Size**: Increase `-batch` for faster processing on systems with more CPU cores
