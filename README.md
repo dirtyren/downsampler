@@ -233,6 +233,52 @@ Original metrics were preserved
 ```
 
 ## Comparison non downsampled vs downsampled
+
+```bash
+ go run vm-lttb-summarizer \
+  -vm-url "http://192.168.25.200:8428" \
+  -start "2025-08-08T05:00:00Z" \
+  -end "2025-09-10T6:00:00Z" \
+  -frame "hour" \
+  -buckets 30 \
+  -metric-prefix "downsampled_"
+```
+
+```
+=== VictoriaMetrics LTTB Summarization ===
+VM URL:          http://192.168.25.200:8428
+Time Range:      2025-08-08T05:00:00Z to 2025-09-10T06:00:00Z
+Frame:           hour
+Buckets/Frame:   30
+Max Points/Query: 25000
+Metric Prefix:   downsampled_
+Original Metrics: PRESERVED
+Dry Run:         false
+==========================================
+2025/08/09 12:32:25 Fetching series list...
+2025/08/09 12:32:25 Fetching series list with filter: {__name__=~".+"}
+2025/08/09 12:32:25 Found 6487 series matching filter
+
+Found 6487 time series to process
+Processing series 6341/6487...
+
+=== SUMMARIZATION COMPLETE ===
+Processing Time:      1m7.145451958s
+Total Series Found:   6487
+Series Processed:     6487
+Series Failed:        0
+Original Points:      6,348,925
+Summarized Points:    3,270,821
+Data Reduction:       48.5%
+Compression Ratio:    1.9x
+Estimated Space Saved: 47.0 MB
+
+New metrics created with prefix: downsampled_
+Original metrics were preserved
+================================
+
+```
+
 <img width="1787" height="691" alt="Example" src="https://github.com/user-attachments/assets/06dc72ee-7f82-4d88-8d67-cec337428cfa" />
 
 
