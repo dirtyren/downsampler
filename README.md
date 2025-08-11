@@ -2,7 +2,7 @@
 
 A high-performance Go tool for downsampling time series data in VictoriaMetrics using the LTTB (Largest Triangle Three Buckets) algorithm. This tool helps reduce storage costs while preserving the visual characteristics of your metrics data.
 
-The idea was based on a clickhouse article https://clickhouse.com/videos/downsampling-time-series-data-with-plot-ly-and-ClickHouse.
+The idea was based on this [clickhouse article](https://clickhouse.com/videos/downsampling-time-series-data-with-plot-ly-and-ClickHouse)
 
 ## Features
 
