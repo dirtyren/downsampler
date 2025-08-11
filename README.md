@@ -232,7 +232,7 @@ Original metrics were preserved
 ================================
 ```
 
-## Compraison non downsampled vs downsampled
+## Comparison non downsampled vs downsampled
 <img width="1787" height="691" alt="Example" src="https://github.com/user-attachments/assets/06dc72ee-7f82-4d88-8d67-cec337428cfa" />
 
 
